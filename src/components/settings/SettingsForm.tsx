@@ -8,10 +8,10 @@ import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { updateProfile } from "@/lib/actions/profile";
 import { createBrowserClient } from "@/lib/supabase/client";
-import type { UserProfile } from "@/types/app.types";
+import type { Profile } from "@/types/database.types";
 
 interface SettingsFormProps {
-  profile: UserProfile;
+  profile: Profile;
   userEmail: string;
 }
 

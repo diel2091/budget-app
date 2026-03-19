@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SettingsForm } from "@/components/settings/SettingsForm";
+import type { Profile } from "@/types/database.types";
 
 export default async function SettingsPage() {
   const supabase = await createSupabaseServerClient();
@@ -18,7 +19,7 @@ export default async function SettingsPage() {
     .from("profiles")
     .select("*")
     .eq("id", user.id)
-    .single();
+    .single() as { data: Profile | null };
 
   if (!profile) {
     redirect("/login");

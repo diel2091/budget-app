@@ -15,12 +15,14 @@ interface TransactionListProps {
   transactions: TransactionWithCategory[];
   categories: Category[];
   currency: string;
+  onSuccess?: () => void;
 }
 
 export function TransactionList({
   transactions,
   categories,
   currency,
+  onSuccess,
 }: TransactionListProps) {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingTransaction, setEditingTransaction] = useState<TransactionWithCategory | null>(null);
@@ -46,6 +48,7 @@ export function TransactionList({
     if (deletingId) {
       await deleteTransaction(deletingId);
       setDeletingId(null);
+      onSuccess?.();
     }
   };
 
